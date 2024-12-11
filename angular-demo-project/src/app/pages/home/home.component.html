@@ -1,0 +1,27 @@
+<div class="container-fluid">
+
+    <img src="images/home_banner.jpg" alt="Home Page banner">
+
+    <div class="main-content">
+        <h1 class="mt-2 banner_title">All the skills you <br>  need in one place</h1>
+        <h5 class="text-secondary">Skills for your present (and your future). <br>
+            Get started with us.</h5>
+        <a class="btn btn-lg btn-secondary mt-2 me-2" routerLink="/courses">Courses</a>
+        <a class="btn btn-lg btn-primary mt-2" routerLink="/about">About Us</a>
+    </div>
+</div>
+
+<div class="container-fluid home_container">
+    <div class="row me-0">
+        <h1 class="text-center">All Courses</h1>
+    </div>
+    <app-courses></app-courses>
+    <!-- <app-courses [courses]="courses"></app-courses> -->
+    <!-- <div class="row my-5">
+        @for( course of courses; track $index){
+            <div class="col-md-4 my-3">
+                <app-courses [course]="course" />
+            </div>
+        }
+    </div> -->
+</div>

@@ -1,0 +1,155 @@
+<div class="container">
+  <div class="row my-3">
+    <!-- @for( course of courses; track $index){ -->
+    @for( course of courses(); track $index){
+    <div class="col-md-4 my-3">
+      <div class="card">
+        <img [src]="course?.image" class="card-img-top" alt="..." />
+        @if(isAdmin){
+        <div>
+          <button
+            class="btn btn-primary ms-2"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            (click)="editCourse(course.id)"
+          >
+            <i class="bi bi-pencil-fill"></i>
+          </button>
+          <button class="btn btn-danger" (click)="deleteCourse(course)">
+            <i class="bi bi-trash-fill"></i>
+          </button>
+        </div>
+
+        }
+        <div class="card-body text-center">
+          <h5 class="card-title fw-bold">{{ course?.title }}</h5>
+          <p class="card-text">{{ course?.description }}</p>
+        </div>
+      </div>
+
+      <!-- <app-courses
+        [course]="course"
+        [isDelete]="true"
+        (del)="deleteCourse($event)"
+      /> -->
+    </div>
+    } @empty { @if(isAdmin){
+    <div align="center" class="my-4">No courses added yet !!!</div>
+    } }
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Course</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form #cousrseForm="ngForm" (ngSubmit)="onSubmit(cousrseForm)">
+          <div class="mb-3">
+            <label for="title" class="form-label"
+              >Title
+              <span class="text-danger">*</span>
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter Title"
+              id="title"
+              name="title"
+              #title="ngModel"
+              [(ngModel)]="model().title"
+              required
+            />
+            <div *ngIf="title.invalid && title.touched" class="text-danger">
+              Title is required
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label"
+              >Description <span class="text-danger">*</span>
+            </label>
+            <textarea
+              class="form-control"
+              rows="3"
+              placeholder="Enter Description"
+              id="description"
+              name="description"
+              #description="ngModel"
+              [(ngModel)]="model().description"
+              required
+            ></textarea>
+            <div
+              *ngIf="description.invalid && description.touched"
+              class="text-danger"
+            >
+              Description is required
+            </div>
+          </div>
+          <div>
+            <label for="imgName" class="form-label"
+              >Choose An Image: <span class="text-danger">*</span></label
+            >
+            <input
+              type="file"
+              name="imgName"
+              id="imgName"
+              accept="image/*"
+              (change)="onFileSelected($event)"
+              [multiple]="false"
+              required
+              class="form-control"
+            />
+            <div *ngIf="cover()">
+              <div class="imageDiv mt-2" align="left">
+                <img [src]="cover()" class="img" alt="img" />
+              </div>
+            </div>
+            <div *ngIf="showError()" class="text-danger">Image is required</div>
+            <!-- <label for="formFile" class="form-label"
+              >Choose An Image: <span class="text-danger">*</span>
+            </label>
+            <input
+              type="file"
+              name="image"
+              id="image"
+              accept="image/*"
+              (change)="onFileSelected($event)"
+              [multiple]="false"
+              ngModel
+              required
+              class="form-control"
+            />
+
+            @if(cover()){
+            <div class="imageDiv mt-2" align="left">
+              <img [src]="cover()" class="img" alt="img" />
+            </div>
+
+            }
+            <div *ngIf="showError()" class="text-danger">Image is required</div> -->
+          </div>
+          <div class="my-4" align="center">
+            <button type="submit" class="btn btn-primary rounded-pill">
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

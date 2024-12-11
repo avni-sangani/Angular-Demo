@@ -1,0 +1,99 @@
+<div class="card">
+  <div class="card-header fw-nornal" align="center">Add Course</div>
+  <div class="card-body">
+    <form #cousrseForm="ngForm" (ngSubmit)="onSubmit(cousrseForm)">
+      <div class="mb-3">
+        <label for="title" class="form-label"
+          >Title
+          <span class="text-danger">*</span>
+        </label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Title"
+          id="title"
+          name="title"
+          #title="ngModel"
+          [(ngModel)]="model().title"
+          required
+        />
+        <div *ngIf="title.invalid && title.touched" class="text-danger">
+          Title is required
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label"
+          >Description <span class="text-danger">*</span>
+        </label>
+        <textarea
+          class="form-control"
+          rows="3"
+          placeholder="Enter Description"
+          id="description"
+          name="description"
+          #description="ngModel"
+          [(ngModel)]="model().description"
+          required
+        ></textarea>
+        <div
+          *ngIf="description.invalid && description.touched"
+          class="text-danger"
+        >
+          Description is required
+        </div>
+      </div>
+      <div>
+        <label for="formFile" class="form-label"
+          >Choose An Image: <span class="text-danger">*</span>
+        </label>
+        <input
+          type="file"
+          name="image"
+          id="image"
+          accept="image/*"
+          (change)="onFileSelected($event)"
+          [multiple]="false"
+          ngModel
+          required
+          class="form-control"
+        />
+        @if(cover()){
+        <div class="imageDiv mt-2" align="left">
+          <img [src]="cover()" class="img" alt="img" />
+        </div>
+
+        }
+        <div *ngIf="showError()" class="text-danger">Image is required</div>
+      </div>
+      <div class="my-4" align="center">
+        <button type="submit" class="btn btn-primary rounded-pill">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+<app-courses
+  [isAdmin]="true"
+></app-courses>
+<!-- <app-courses
+  [isAdmin]="true"
+  (del)="deleteCourse($event)"
+></app-courses> -->
+<!-- <app-courses
+  [courses]="courses"
+  [isAdmin]="true"
+  (del)="deleteCourse($event)"
+></app-courses> -->
+
+<!-- <div class="container">
+    <div class="row my-3">
+        @for( course of courses; track $index){
+        <div class="col-md-4 my-3 ">
+            <app-courses [course]="course" [isDelete]="true" (del)="deleteCourse($event)"/>
+        </div>
+        } @empty {
+        <div align="center">
+            No courses added yet !!!
+        </div>
+        }
+    </div>
+</div> -->

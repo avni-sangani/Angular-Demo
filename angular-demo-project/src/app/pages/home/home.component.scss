@@ -1,0 +1,27 @@
+img{
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    height: 85vh;
+}
+
+.main-content{
+    position: absolute;
+    top: 50%;   
+    left: 20%;
+    transform: translate(-50%,-50%);
+    h1{
+        color: black;
+        font-size: 3rem;
+    }
+    .banner_title{
+        font-family: serif;
+        font-weight: bold;
+    }
+}
+
+.home_container{
+    background-color: #f7f9fa;
+    margin:1rem 0;
+    padding: 1rem 0;
+}

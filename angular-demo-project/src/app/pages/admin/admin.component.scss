@@ -1,0 +1,25 @@
+
+.card{
+    width: 70%;
+    margin: 2rem auto;
+    .card-header{
+        font-size: 1.8rem;
+    }
+    button{
+        width: 100%;
+        font-size: 1rem;
+    }
+}
+
+.text-danger{
+    font-size: 0.8rem;
+}
+
+.imageDiv{
+    img{
+        height: 4rem;
+        width: 4rem;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+}
